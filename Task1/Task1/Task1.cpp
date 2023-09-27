@@ -3,13 +3,12 @@
 #include <cmath>
 #include <stdexcept>
 
-class Integral {
-	
+class Integral {	
 public:
 	virtual double Calc(double Function(double x), double lower, double upper) const = 0;
 
 	Integral(int num, double step, double accuracy) {
-		if (num < 2 || step <= 0.0) {
+		if (num < 2 || step <= 0) {
 			throw std::invalid_argument("Некорректные параметры");
 		} else {
 			this->num = num;
@@ -17,7 +16,6 @@ public:
 			this->accuracy = num;
 		}
 	}
-
 	~Integral() {}
 protected:
 	double step;
