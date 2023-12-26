@@ -2,7 +2,7 @@
 
 class VirtualKeyboard
 {
-	private array $actions;
+	protected array $actions;
 	public function setAction(string $key, string $virtualKey): void
 	{
 		$this->actions[$key] = $virtualKey;
@@ -94,7 +94,7 @@ foreach (VIRTUAL_KEYBOARD as $key) {
 
 $string = '';
 $copiedString = '';
-
+$actions = [];
 
 echo "\nНажмите на клавишу: \n";
 while (true) {
@@ -109,13 +109,29 @@ while (true) {
 	sleep(1);
 	if ($key === 'откат') {
 		$string = substr($string, 0, -1);
+	}
+	else if ($key === 'откат настройки') {
+		$virtualKeyboard->setAction(end($actions), end($actions));
+		array_pop($actions);
 	} elseif ($key === 'настройка') {
 		fwrite(STDOUT, "Включена настройка переназначенных клавиш: \n");
 		fwrite(STDOUT, "Введите клавишу или комбинацию: ");
 		$reassignKey = trim(fgets(STDIN));
+		$actions[] = $reassignKey;
 		fwrite(STDOUT, "Введите новую клавишу или комбинацию: ");
 		$virtualKey = trim(fgets(STDIN));
-		$virtualKeyboard->relabelKey($reassignKey, $virtualKey);
+		$virtualKeyboard->setAction($reassignKey, $virtualKey);
+		$key = trim(fgets(STDIN));
+		if ($key === 'продолжить') {
+			continue;
+		}
+		if ($key === 'выход') {
+			die;
+		}
+		if ($key === 'откат') {
+			$virtualKeyboard->rollbackAction();
+			$virtualKeyboard->setAction($reassignKey, $reassignKey);
+		}
 	} else {
 		$virtualKey = $virtualKeyboard->getVirtualKey($key);
 		if (!strpos($virtualKey, '+')) {
