@@ -13,7 +13,7 @@ abstract class Control {
 	abstract public function log($methodName);
 }
 
-class Form extends Control {
+class WinForm extends Control {
 	private array $controls = [];
 	public function addControl(Control $control): void
 	{
@@ -21,12 +21,33 @@ class Form extends Control {
 	}
 	public function log($methodName): void
 	{
-		echo "Вызван метод $methodName у контролла Form\n";
+		echo "Вызван метод $methodName у контролла WinForm\n";
+	}
+}
+class LinForm extends Control {
+	private array $controls = [];
+	public function addControl(Control $control): void
+	{
+		$this->controls[] = $control;
+	}
+	public function log($methodName): void
+	{
+		echo "Вызван метод $methodName у контролла LinForm\n";
+	}
+}
+class MacForm extends Control {
+	private array $controls = [];
+	public function addControl(Control $control): void
+	{
+		$this->controls[] = $control;
+	}
+	public function log($methodName): void
+	{
+		echo "Вызван метод $methodName у контролла MacForm\n";
 	}
 }
 
-
-class Label extends Control {
+class WinLabel extends Control {
 	private string $text;
 	public function setText($text): void
 	{
@@ -40,12 +61,45 @@ class Label extends Control {
 	}
 	public function log($methodName): void
 	{
-		echo "Вызван метод $methodName у контролла Label\n";
+		echo "Вызван метод $methodName у контролла WinLabel\n";
+	}
+}
+class LinLabel extends Control {
+	private string $text;
+	public function setText($text): void
+	{
+		$this->text = $text;
+		$this->log("setText");
+	}
+	public function getText(): string
+	{
+		$this->log("getText");
+		return $this->text;
+	}
+	public function log($methodName): void
+	{
+		echo "Вызван метод $methodName у контролла LinLabel\n";
+	}
+}
+class MacLabel extends Control {
+	private string $text;
+	public function setText($text): void
+	{
+		$this->text = $text;
+		$this->log("setText");
+	}
+	public function getText(): string
+	{
+		$this->log("getText");
+		return $this->text;
+	}
+	public function log($methodName): void
+	{
+		echo "Вызван метод $methodName у контролла MacLabel\n";
 	}
 }
 
-
-class TextBox extends Control {
+class WinTextBox extends Control {
 	private string $text;
 	private string $font;
 	public function setText($text): void
@@ -58,7 +112,6 @@ class TextBox extends Control {
 		$this->log("getText");
 		return $this->text;
 	}
-
 	public function getFont(): string
 	{
 		$this->log("getFont");
@@ -71,11 +124,67 @@ class TextBox extends Control {
 	}
 	public function log($methodName): void
 	{
-		echo "Вызван метод $methodName у контролла TextBox\n";
+		echo "Вызван метод $methodName у контролла WinTextBox\n";
+	}
+}
+class LinTextBox extends Control {
+	private string $text;
+	private string $font;
+	public function setText($text): void
+	{
+		$this->text = $text;
+		$this->log("setText");
+	}
+	public function getText(): string
+	{
+		$this->log("getText");
+		return $this->text;
+	}
+	public function getFont(): string
+	{
+		$this->log("getFont");
+		return $this->font;
+	}
+	public function changeFont($font): void
+	{
+		$this->font = $font;
+		$this->log("changeFont");
+	}
+	public function log($methodName): void
+	{
+		echo "Вызван метод $methodName у контролла LinTextBox\n";
+	}
+}
+class MacTextBox extends Control {
+	private string $text;
+	private string $font;
+	public function setText($text): void
+	{
+		$this->text = $text;
+		$this->log("setText");
+	}
+	public function getText(): string
+	{
+		$this->log("getText");
+		return $this->text;
+	}
+	public function getFont(): string
+	{
+		$this->log("getFont");
+		return $this->font;
+	}
+	public function changeFont($font): void
+	{
+		$this->font = $font;
+		$this->log("changeFont");
+	}
+	public function log($methodName): void
+	{
+		echo "Вызван метод $methodName у контролла MacTextBox\n";
 	}
 }
 
-class ComboBox extends Control {
+class WinComboBox extends Control {
 	private $selectedIndex;
 	private array $items = [];
 	public function setSelectedIndex($index): void
@@ -99,12 +208,65 @@ class ComboBox extends Control {
 	}
 	public function log($methodName): void
 	{
-		echo "Вызван метод $methodName у контролла ComboBox\n";
+		echo "Вызван метод $methodName у контролла WinComboBox\n";
+	}
+}
+class LinComboBox extends Control {
+	private $selectedIndex;
+	private array $items = [];
+	public function setSelectedIndex($index): void
+	{
+		$this->selectedIndex = $index;
+		$this->log("setSelectedIndex");
+	}
+	public function getSelectedIndex() {
+		$this->log("getSelectedIndex");
+		return $this->selectedIndex;
+	}
+	public function setItems(array $items): void
+	{
+		$this->items = $items;
+		$this->log("setItems");
+	}
+	public function getItems(): array
+	{
+		$this->log("getItems");
+		return $this->items;
+	}
+	public function log($methodName): void
+	{
+		echo "Вызван метод $methodName у контролла LinComboBox\n";
+	}
+}
+class MacComboBox extends Control {
+	private $selectedIndex;
+	private array $items = [];
+	public function setSelectedIndex($index): void
+	{
+		$this->selectedIndex = $index;
+		$this->log("setSelectedIndex");
+	}
+	public function getSelectedIndex() {
+		$this->log("getSelectedIndex");
+		return $this->selectedIndex;
+	}
+	public function setItems(array $items): void
+	{
+		$this->items = $items;
+		$this->log("setItems");
+	}
+	public function getItems(): array
+	{
+		$this->log("getItems");
+		return $this->items;
+	}
+	public function log($methodName): void
+	{
+		echo "Вызван метод $methodName у контролла MacComboBox\n";
 	}
 }
 
-
-class Button extends Control {
+class WinButton extends Control {
 	private string $text;
 	public function setText($text): void
 	{
@@ -122,110 +284,164 @@ class Button extends Control {
 	}
 	public function log($methodName): void
 	{
-		echo "Вызван метод $methodName у контролла Button\n";
+		echo "Вызван метод $methodName у контролла WinButton\n";
+	}
+}
+class LinButton extends Control {
+	private string $text;
+	public function setText($text): void
+	{
+		$this->text = $text;
+		$this->log("setText");
+	}
+	public function getText(): string
+	{
+		$this->log("getText");
+		return $this->text;
+	}
+	public function Click(): void
+	{
+		$this->log("Click");
+	}
+	public function log($methodName): void
+	{
+		echo "Вызван метод $methodName у контролла LinButton\n";
+	}
+}
+class MacButton extends Control {
+	private string $text;
+	public function setText($text): void
+	{
+		$this->text = $text;
+		$this->log("setText");
+	}
+	public function getText(): string
+	{
+		$this->log("getText");
+		return $this->text;
+	}
+	public function Click(): void
+	{
+		$this->log("Click");
+	}
+	public function log($methodName): void
+	{
+		echo "Вызван метод $methodName у контролла MacButton\n";
 	}
 }
 
-
-abstract class AbstractFactory {
-	abstract public function createForm(): Form;
-	abstract public function createLabel(): Label;
-	abstract public function createTextBox(): TextBox;
-	abstract public function createComboBox(): ComboBox;
-	abstract public function createButton(): Button;
+abstract class WinAbstractFactory {
+	abstract public function createForm(): WinForm;
+	abstract public function createLabel(): WinLabel;
+	abstract public function createTextBox(): WinTextBox;
+	abstract public function createComboBox(): WinComboBox;
+	abstract public function createButton(): WinButton;
+}
+abstract class LinAbstractFactory {
+	abstract public function createForm(): LinForm;
+	abstract public function createLabel(): LinLabel;
+	abstract public function createTextBox(): LinTextBox;
+	abstract public function createComboBox(): LinComboBox;
+	abstract public function createButton(): LinButton;
+}
+abstract class MacAbstractFactory {
+	abstract public function createForm(): MacForm;
+	abstract public function createLabel(): MacLabel;
+	abstract public function createTextBox(): MacTextBox;
+	abstract public function createComboBox(): MacComboBox;
+	abstract public function createButton(): MacButton;
 }
 
-class WindowsFactory extends AbstractFactory {
-	public function createForm(): Form {
-		return new Form();
-	}
-	public function createLabel(): Label {
-		return new Label();
-	}
-	public function createTextBox(): TextBox {
-		return new TextBox();
-	}
-	public function createComboBox(): ComboBox {
-		return new ComboBox();
-	}
-	public function createButton(): Button {
-		return new Button();
-	}
-}
 
-class LinuxFactory extends AbstractFactory {
-	public function createForm(): Form {
-		return new Form();
+class WindowsFactory extends WinAbstractFactory {
+	public function createForm(): WinForm {
+		return new WinForm();
 	}
-	public function createLabel(): Label {
-		return new Label();
+	public function createLabel(): WinLabel {
+		return new WinLabel();
 	}
-	public function createTextBox(): TextBox {
-		return new TextBox();
+	public function createTextBox(): WinTextBox {
+		return new WinTextBox();
 	}
-	public function createComboBox(): ComboBox {
-		return new ComboBox();
+	public function createComboBox(): WinComboBox {
+		return new WinComboBox();
 	}
-	public function createButton(): Button {
-		return new Button();
+	public function createButton(): WinButton {
+		return new WinButton();
 	}
 }
 
-class MacOSFactory extends AbstractFactory {
-	public function createForm(): Form {
-		return new Form();
+class LinuxFactory extends LinAbstractFactory {
+	public function createForm(): LinForm {
+		return new LinForm();
 	}
-	public function createLabel(): Label {
-		return new Label();
+	public function createLabel(): LinLabel {
+		return new LinLabel();
 	}
-	public function createTextBox(): TextBox {
-		return new TextBox();
+	public function createTextBox(): LinTextBox {
+		return new LinTextBox();
 	}
-	public function createComboBox(): ComboBox {
-		return new ComboBox();
+	public function createComboBox(): LinComboBox {
+		return new LinComboBox();
 	}
-	public function createButton(): Button {
-		return new Button();
+	public function createButton(): LinButton {
+		return new LinButton();
+	}
+}
+
+class MacOSFactory extends MacAbstractFactory {
+	public function createForm(): MacForm {
+		return new MacForm();
+	}
+	public function createLabel(): MacLabel {
+		return new MacLabel();
+	}
+	public function createTextBox(): MacTextBox {
+		return new MacTextBox();
+	}
+	public function createComboBox(): MacComboBox {
+		return new MacComboBox();
+	}
+	public function createButton(): MacButton {
+		return new MacButton();
 	}
 }
 
 echo "Выберите операционную систему: \n1 - Windows\n2 - MacOS\n3 - Linux\n";
 $os = trim(readline());
 
-$osFactory = match ($os) {
-	'1' => new WindowsFactory(),
-	'2' => new LinuxFactory(),
-	'3' => new MacOSFactory(),
-	default => throw new Exception('Неверная ОС!'),
-};
-
-$form = $osFactory->createForm();
-$label = $osFactory->createLabel();
-$textBox = $osFactory->createTextBox();
-$comboBox = $osFactory->createComboBox();
-$button = $osFactory->createButton();
-
-$form->addControl($label);
-$form->addControl($textBox);
-$form->addControl($comboBox);
-$form->addControl($button);
-$form->getPosition();
-$form->setPosition("position");
-
-$label->setText("Я лэйбл");
-echo "Текст Label: " . $label->getText() . "\n";
-
-$textBox->setText("Какой-то текст");
-echo "Текст TextBox: " . $textBox->getText() . "\n";
-
-$textBox->changeFont("Arial");
-echo "Шрифт в TextBox: " . $textBox->getFont() . "\n";
-
-$comboBox->setItems(["Яблоко", "Груша", "Персик"]);
-$comboBox->setSelectedIndex(2);
-echo "Выбран предмет из ComboBox №: " . $comboBox->getSelectedIndex() . "\n";
-echo "Выбраны предметы из ComboBox: " . implode(', ', $comboBox->getItems()) . "\n";
-
-$button->setText("Большая Красная Кнопка");
-echo "Текст Button: " . $button->getText() . "\n";
-$button->Click();
+switch ($os){
+	case '1':
+		$osFactory = new WindowsFactory();
+		$form = $osFactory->createForm();
+		$label = $osFactory->createLabel();
+		$textBox = $osFactory->createTextBox();
+		$form->addControl($label);
+		$form->addControl($textBox);
+		$form->getPosition();
+		$form->setPosition("position");
+		$label->setText("Я лэйбл из Windows Factory");
+		echo "Текст Label: " . $label->getText() . "\n";
+		break;
+	case '2':
+		$osFactory = new MacOSFactory();
+		$form = $osFactory->createForm();
+		$textBox = $osFactory->createTextBox();
+		$form->addControl($textBox);
+		$form->getPosition();
+		$form->setPosition("position");
+		$textBox->setText("Какой-то текст из MacOS Factory");
+		echo "Текст TextBox: " . $textBox->getText() . "\n";
+		break;
+	case '3':
+		$osFactory = new LinuxFactory();
+		$form = $osFactory->createForm();
+		$button = $osFactory->createButton();
+		$form->addControl($button);
+		$button->setText("Большая Красная Кнопка из Linux Factory");
+		echo "Текст Button: " . $button->getText() . "\n";
+		break;
+	default:
+		echo "Неверная ОС!";
+		break;
+}
