@@ -194,7 +194,14 @@ function printAsList(array $array)
 	echo "]\n";
 }
 
-$array3d = new Array3D([143,232,357,234,545,633,137,382,123,510,151,212,913,784,445,326,217,338], 3, 2, 3);
+$array = [143,232,357,234,545,633,[137,382],123,510,151,212,913,784,[445,326,217,444]];
+$array1D = [];
+array_walk_recursive($array, function($item) use (&$array1D) {
+	$array1D[] = $item;
+});
+print_r($array1D);
+
+$array3d = new Array3D($array1D, 3, 2, 3);
 
 echo "\n----------------element[2][1][2]----------------\n";
 print_r($array3d->indexer([2, 1, 2]));
